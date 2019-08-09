@@ -1,0 +1,34 @@
+#dev
+server:
+  port: 8088
+  
+spring:
+  profiles: dev
+  datasource:
+    username: root
+    password: root
+    jdbc-url: jdbc:mysql://localhost:3306/testDb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  messages:
+    basename: i18n.messages
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.gjt.hellosb.entity
+
+# test mystarter
+gaojt:
+  msg: Mystarter msg from DEV yml
+   
+#showSql
+logging:
+  level:
+    com:
+      gjt:
+        hellosb:
+          dao: debug
+
+context:
+  listener:
+    classes: com.gjt.hellosb.component.MyEventListener3     

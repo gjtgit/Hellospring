@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+<!-- no need the link when favicon in /statc, otherwise use link,eg. favicon is in static/images/  
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico"> 
+ -->
+</head>
+<body>
+<div class="container">
+  <h1 th:text="#{login.hellosbSystem}">Home page from templates Dir</h1>
+  <div class="row">
+  <div class="col-xs-4">
+  <a class="btn-sm" th:href="@{/index(l='zh_CN')}">中文</a>
+  <a class="btn-sm" th:href="@{/index(l='en_US')}">English</a>
+  </div></div>
+  <div class="row">
+  <div class="col-xs-4">
+  <a class="btn-sm" th:href="@{/login}">[[#{login.userLogin}]]</a>
+  </div></div>
+</div>  
+</body>
+</html>

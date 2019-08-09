@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>5xx in templates</title>
+</head>
+<body>
+<h1>5xx in templates</h1>
+<hr>
+<h3>status: [[${status}]]</h3>
+<h3>timestamp: [[${timestamp}]]</h3>
+<h3>exception: [[${exception}]]</h3>
+<h3>error: [[${error}]]</h3>
+<h3>message: [[${message}]]</h3>
+<hr>
+<h3>myErrorAttr1: [[${myErrorAttr1}]]</h3>
+<div th:if="${not #strings.isEmpty(myErrorMap)}">
+  <h3>myErrorCode: [[${myErrorMap.myErrorCode}]]</h3>
+  <h3>message: [[${myErrorMap.message}]]</h3>
+</div>
+
+</body>
+</html>

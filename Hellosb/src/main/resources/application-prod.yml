@@ -1,0 +1,6 @@
+#prod
+server:
+  port: 8090
+  
+spring:
+  profiles: prod

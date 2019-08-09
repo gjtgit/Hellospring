@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{login.userLogin}">Login Page</title>
+<!-- no need the link when favicon in /statc otherwise use link when favicon is in static/images/  
+<link rel="icon" type="image/x-icon" href="/img/favicon.ico"> 
+ -->
+ <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+</head>
+<body>
+  <div class="container">
+  <div class="row" >
+  <h1 th:text="#{login.hellosbSystem}">Home page from templates Dir</h1>
+  </div>
+  <div class="row"> 
+  <a class="btn-sm" th:href="@{/index(l='zh_CN')}">中文</a>
+  <a class="btn-sm" th:href="@{/index(l='en_US')}">English</a>
+  </div>
+  <hr>
+  <div class="row">
+  <h3 th:text="#{login.userLogin}"></h3>
+  </div>
+  
+  <form th:action="@{/doLogin}" method="post" id="loginForm">
+  
+  <div class="row">
+  <p style="color:red" th:text="${loginMsg}" th:if="${not #strings.isEmpty(loginMsg)}"></p>
+  </div>
+  <div class="row">
+  <div class="col-xs-12">
+    <h4 th:text="#{login.username}">default username</h4>
+    <input type="text" name="username" id="username" class="form-control" th:placeholder="#{login.username}" />
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-xs-4">
+    <h4 th:text="#{login.password}">default password</h4>
+    <input type="password" name="password" id="password" class="form-control" th:placeholder="#{login.password}"/>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-xs-6">
+    <button id="loginButton" type="submit" class="btn btn-block btn-xs btn-primary" th:text="#{login}"></button>
+  </div>
+  </div>
+
+  </form>
+  </div>
+  
+</body>
+</html>

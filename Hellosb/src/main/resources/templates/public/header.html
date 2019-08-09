@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+ <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+ <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div class="container">
+<h1>Dashboard page</h1>
+<h4>You have logged in</h4>
+
+    <div th:fragment="header">
+    
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <ul class="navbar-nav">
+                        <li><a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                        <li><a th:href="@{/users}">Users</a></li>
+                        <li><a th:href="@{/users/add}">Create User</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="row">
+                    <h2>My Dashboard</h2>
+                </div>
+            </div>
+            <div class="row text-center">
+                <img src="/img/bootstrap-solid.svg" alt="" width="50" height="50"
+                th:src="@{/img/bootstrap-solid.svg}" />           
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+</body>
+</html>

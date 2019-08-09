@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+
+
+logging:
+  file: c:/log/hellosb.log
+
+# test mystarter
+gaojt:
+  msg: mystarter msg in main yml 
+    
+---
+#dev
+server:
+  port: 8088
+  
+spring:
+  profiles: dev
+    
+---
+#test
+server:
+  port: 8089
+  
+spring:
+  profiles: test  
+  

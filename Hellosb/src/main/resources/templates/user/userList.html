@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+
+<title>userList</title>
+</head>
+<body>
+  <div class="container">
+     <h1>用户列表</h1>
+     <table class="table">
+         <thead>
+             <tr>
+	           <th>userId</th>
+	           <th>userName</th>
+	           <th>email</th>
+	           <th>mobile</th>
+	           <th>birthday</th>
+             </tr>
+         </thead>
+         <tbody>
+         <tr th:each="user:${userList}">
+             <td th:text="${user.id}"></td>
+             <td th:text="${user.userName}"></td>
+             <td th:text="${user.email}"></td>
+             <td th:text="${user.mobilePhone}"></td>
+             <td th:text="${#dates.format(user.birthday,'yyyy/MM/dd')}"></td>
+             <td><a th:href="${'/users/edit/'+user.id}" class="btn btn-info">Edit</a></td>
+             <td><a th:href="${'/users/delete/'+user.id}" class="btn btn-danger">Delete</a></td>
+         </tr>
+         </tbody>
+     </table>
+   </div>
+</body>
+</html>

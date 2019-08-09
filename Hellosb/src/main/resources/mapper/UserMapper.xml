@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gjt.hellosb.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.gjt.hellosb.entity.User">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    
+    <resultMap id="userMapResult" type="java.util.HashMap">
+	    <id column="ID" property="id" jdbcType="INTEGER"/>
+	    <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List">
+    id, user_name, user_pwd, email, mobile_phone, birthday, updated_at
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="selectByEmail" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where EMAIL = #{EMAIL,jdbcType=VARCHAR}
+    </select>
+    
+    <select id="getAllUsers" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        order by user_name
+    </select>
+    
+    <insert id="insert" parameterType="com.gjt.hellosb.entity.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user (id, user_name, user_pwd, email, mobile_phone, birthday, updated_at)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userPwd,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR},
+      #{birthday,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+    )
+    </insert>
+    
+    <insert id="insertSelective" parameterType="com.gjt.hellosb.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="userPwd != null">
+                user_pwd,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{flag,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+            
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        DELETE FROM user
+        WHERE ID = #{id,jdbcType=INTEGER}
+    </delete>
+        
+    <update id="updateByPrimaryKeySelective" parameterType="com.gjt.hellosb.entity.User">
+        update user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                user_pwd = #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="userPwd != null">
+                user_pwd = #{userPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gjt.hellosb.entity.User">
+    	update user
+			user_name = #{userName,jdbcType=VARCHAR},
+			user_pwd = #{userPwd,jdbcType=VARCHAR},
+			user_pwd = #{userPwd,jdbcType=VARCHAR},
+			email = #{email,jdbcType=VARCHAR},
+			mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+			birthday = #{birthday,jdbcType=TIMESTAMP},
+			updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+	        where ID = #{id,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=INTEGER}
+    </update>
+   
+    <!-- 
+    <resultMap id="userWithAllInfo" type="com.gjt.hellosb.entity.User">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <association property="startPostcodeDetail" column="START_POSTCODE" javaType="com.ibm.gss.vo.rcms.PostcodeVO">
+            <id column="POSTCODE_ID" property="id" jdbcType="INTEGER"/>
+            <result column="CODE" property="code" jdbcType="VARCHAR"/>
+            <result column="LATITUDE" property="latitude" jdbcType="DOUBLE"/>
+            <result column="LONGITUDE" property="longitude" jdbcType="DOUBLE"/>
+            <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+            <result column="IS_VALID" property="isValid" jdbcType="SMALLINT"/>
+        </association>
+        
+        <collection property="skills" ofType="com.gjt.hellosb.entity.UserSkill">
+            <id column="SKILL_ID" property="id" jdbcType="INTEGER"/>
+            <result column="PRODUCT" property="product" jdbcType="VARCHAR"/>
+            <result column="MODEL" property="model" jdbcType="VARCHAR"/>
+            <result column="LEVEL" property="level" jdbcType="DECIMAL"/>
+        </collection>
+       
+    </resultMap>
+    
+    <select id="getUserWithAllinfo" resultMap="userWithAllInfo" parameterType="java.util.Map" >
+        select u.id,u.user_name, p.post_code, s.skill_name
+        from user u
+        left join postcodes p on u.id = p.id
+        left join user_skill s on u.id = s.user_id
+    </select>
+     -->
+     
+     
+</mapper>
